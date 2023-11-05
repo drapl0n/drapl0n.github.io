@@ -1,0 +1,102 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/x-icon" href="./../assets/drapl0n.png">
+	<link rel="stylesheet" href="./../css/main.css">
+	<title>MaYanK GiTe (drapl0n)</title>
+</head>
+<body>
+    <div class="container">
+	<div class="ascii-frame">
+		<pre>
++---------------------------------+-------+---------------------------------------------------+
+|  ╔╦╗┌─┐┬ ┬┌─┐┌┐┌┬┌─  ╔═╗┬┌┬┐┌─┐ | - • - |                                                   |
+|  ║║║├─┤└┬┘├─┤│││├┴┐  ║ ╦│ │ ├┤  | - - • |                                         <a href="./../index.html">[-HOME-]</a>  |
+|  ╩ ╩┴ ┴ ┴ ┴ ┴┘└┘┴ ┴  ╚═╝┴ ┴ └─┘ | • • • |                                                   |
++---------------------------------+-------+---------------------------------------------------+
+|                                                                                             |
+|  The Stranger Beside Me: The Ransomware Pursuit                                             |
+| -------------------------------------------------                                           |
+|                                                                                             |
+|  I was in school when I received a call from my workplace informing me about an urgent as-  |
+|  signment. Thia was my first on-field case since joining the firm, and it was a ransomware  |
+|  attack on a business organization in another city. I had to leave for the client's office  |
+|  the very next day. Packing my bag and gearing up at the crack of dawn, around 5 AM, I fe-  |
+|  lt a mixture of nerves and excitement. This was my first time leaving the city alone, and  |
+|  the day held both anticipation and challenges.                                             |
+|                                                                                             |
+|  I had reached my destination by noon.  Unfortunately, the client's office was closed sin-  |
+|  ce it was a Sunday. Their data from the past ten years had been encrypted. A system admi-  |
+|  nistrator from the client's company came to assist me, and I entered their office at 1 PM  |
+|  after a quick lunch, stacking my bag with energy drinks for the impending challenge.       |
+|                                                                                             |
+|  My investigation began by understanding their network topology, and it was clear that two  |
+|  of their  servers were compromised and infected.  The main server ran Windows Server 2012  |
+|  R2 Standard  with 3000 gigs of storage,  while the backup server had 900 gigs of storage.  |
+|  Suprisingly, such a large organization had no third-party  antivirus installed and relied  |
+|  solely on Windows Defender. The main server was running three VMs, on which employees pr-  |
+|  imarily worked.  Earlier, we instructed  them to shut down the servers and disconnect the  |
+|  rest of the systems from the network. I delved into inspecting other systems to check the  |
+|  spread of the infection. After a thorough check, I decided to turn on the infected server  |
+|  but the operating system was barely functioning and had an extreme input delay. Somehow I  |
+|  managed to get into Task Manager.  Hundreds of processes were running and one of them was  |
+|  an executable consuming almost 95% of the CPU usage. Tracing the process back to its sou-  |
+|  rce, I discovered it was hidden in the Startup directory.  After killing the process, the  |
+|  OS regained its normal functionality. I proceeded to perform static malware analysis, wh-  |
+|  ich revealed that the ransomware belonged to the Phobos family and was entirely new, with  |
+|  no known signatures. This marked the end of the initial investigation.                     |
+|                                                                                             |
+|  With a brief break, I began my analysis at 3 PM, booting the server into a live Linux en-  |
+|  vironment for extracting system artifacts. Cloning the entire disk was out of the questi-  |
+|  on due to both size (the vast amount of data stored in a RAID configuration) and time.     |
+|  After extracting the data, my first order of business was to examine encrypted file deta-  |
+|  ils to pinpoint the attack timestamp. Interrogating the sysadmin revealed that the client  |
+|  had noticed the attack the day after (four days prior to my arrival).  I requested a list  |
+|  of  employees present on the day before the attack,  but no potential footprint was found  |
+|  after investigating their systems. Turning to Windows Events, I started going through lo-  |
+|  gs. Around 4 PM, I found a successful user logon just before a minute of attack. I lacked  |
+|  a solid  link to the root cause. I started ripping Windows Registry Hive.  After skimming  |
+|  nearly 60,000 lines of logs on a stark white screen with black font, suddenly I was over-  |
+|  come by vertigo, fearing I might pass out. I rushed outside splashing my face with chill-  |
+|  ed water.  After half an hour of recovery,  I regrouped but struggled to regain my focus.  |
+|  Going through RDP logs,  I came across suspicious entries that led to a legitimate login.  |
+|  All the while, I kept my seniors updated every 15 minutes via phone call.                  |
+| 											      |
+|  It was 7:30 PM, and I remained empty-handed in this high-stakes investigation. The reali-  |
+|  zation struck me that I had an end-semester exam just two days away, leaving me no choice  |
+|  but to spend the night at the client's office. We ordered and had dinner within the offi-  |
+|  ce premises. The sysadmin's behavior grew increasingly friendly and informal, but I brus-  |
+|  hed it off.  At 10 PM, I once again analyzed the  AppCompatCache and ShimCache, filtering  |
+|  through logs. Suddenly, noticed an  event involving the mounting of an external drive and  |
+|  the execution  of a malicious executable from that drive.  I immediately searched for the  |
+|  returned contents of system hive  mounted devices and got a device identifier. After sim-  |
+|  le OSINT, I found it was a HP flashdrive.  When I confronted the sysadmin about the drive  |
+|  , he confirmed it was his.  At that point, I knew he was the culprit. Around 11:30 PM, he  |
+|  made me sign a non-disclosure agreement since I was taking all the logs and files with me  |
+|  I erased all traces of the malware from their server, proving him by connecting my system  |
+|  I decided to head  back home,  booking a ticket for the next available  train to my city.  |
+|  Packing up  all my gear scattered on the floor,  including two laptops, dozens of storage  |
+|  devices, Ethernet cables, and more, I was ready to go. The sysadmin dropped me off at the  |
+|  train station.  I boarded the train at 1:30 AM and reached home around 4 AM. Around 11:30  |
+|  PM,  I had him sign a non-disclosure agreement since I was taking  all the logs and files  |
+|  with me.  I erased  all traces of the malware from their server and  demonstrated this by  |
+|  connecting my system to their network. I then decided to head back home, booking a ticket  |
+|  for the  next available train to my city.  Packing up all my gear scattered on the floor,  |
+|  including two laptops,  dozens of storage devices, Ethernet cables, and more, I was ready  |
+|  to go.  The sysadmin dropped me off at the train station.  I boarded the train at 1:30 AM  |
+|  and reached home around 4 AM.                                                              |
+|                                                                                             |
+|  I drafted a report outlining the investigation and analysis, supported by evidence. Later, |
+|  the client fired the sysadmin, who spent the entire day with me, assisting in finding the  |
+|  root cause.  It was a stark reminder of how a single  mistake in my report could have had  |
+|  dire consequences.                                                                         |
+|										              |
++---------------------------------------------------------------------------------------------+
+|                                      Let's Get Social!                                      |
+|                                <a href="mailto:drapl0n@protonmail.com">Email</a> <a href="https://github.com/drapl0n">Github</a> <a href="https://twitter.com/drapl0n">Twitter</a> <a href="https://infosec.exchange/@drapl0n">Mastodon</a>                                |
++---------------------------------------------------------------------------------------------+
+</pre>
+		</div>
+	</div>
+</body>
+</html>

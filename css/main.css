@@ -1,0 +1,30 @@
+.ascii-frame {
+	float: auto;
+	padding: 10px;
+	font-size: vw;
+}
+.container {
+	max-width: 780px;
+	margin: auto;
+	font-size:vw;	
+}
+body{
+      	background-color: #000000;
+      	color: #00ff00;
+      	box-sizing: border-box;
+}
+@media screen and (max-width: 600px) {
+	.ascii-frame {
+		width: 100%;
+	}
+}
+a:link, a:visited {
+	color: #00ff00;
+}
+a:active, a:hover {
+	color: #ffffff;
+}
+::selection {
+	color: #000000;
+	background: #00ff00;
+}
